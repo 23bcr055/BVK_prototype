@@ -7,8 +7,7 @@
   --card: #f8fafc;
   --primary: #1E3A5F;      /* Navy */
   --secondary: #C9A44C;    /* Soft Gold */
-  --accent: #2E8B8B;       /* Teal */
-  --bg-light: #F7F4EF;     /* Beige */
+  --accent: #2E8B8B;       /* Teal */  /* Beige */
   --white: #ffffff;
   --text-dark: #2B2B2B;
   --text-muted: #6B7280;
@@ -2610,3 +2609,4 @@ section {
   -webkit-text-fill-color: transparent;
 
 }
+
