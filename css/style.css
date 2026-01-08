@@ -386,7 +386,6 @@ html {
 
 /* Apply the background pattern and gradient */
 body {
-  background: var(--bg), var(--bg-pattern);
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--text);
@@ -2612,4 +2611,5 @@ section {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
 }
