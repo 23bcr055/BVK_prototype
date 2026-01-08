@@ -6,8 +6,6 @@
   --accent: #0b4a6f;
   --card: #f8fafc;
   --primary: #1E3A5F;      /* Navy */
-  --secondary: #C9A44C;    /* Soft Gold */
-  --accent: #2E8B8B;       /* Teal */  /* Beige */
   --white: #ffffff;
   --text-dark: #2B2B2B;
   --text-muted: #6B7280;
@@ -18,13 +16,7 @@
   padding: 80px 0;
 }
 
-.accent-bg {
-  background: linear-gradient(
-    135deg,
-    rgba(30, 58, 95, 0.05),
-    rgba(46, 139, 139, 0.05)
-  );
-}
+
 .btn,
 .btn-welcome {
   background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -59,7 +51,6 @@ h1, h2, h3 {
 .testimonial-card,
 .counter-box,
 .stat-item {
-  background: var(--white);
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -2609,4 +2600,5 @@ section {
   -webkit-text-fill-color: transparent;
 
 }
+
 
