@@ -9,6 +9,13 @@
   --white: #ffffff;
   --text-dark: #2B2B2B;
   --text-muted: #6B7280;
+  
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-bg-light: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: 10px;
+  --glass-blur-heavy: 20px;
 
 }
 
@@ -16,10 +23,265 @@
   padding: 80px 0;
 }
 
+/* ========================================
+   GLASSMORPHISM EFFECTS - Modern Glass Design
+   ======================================== */
 
-.btn,
+/* Glass Base - Frosted Glass Container */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  background: var(--glass-bg-light);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Deep Glass Effect - More Opaque */
+.glass-deep {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(var(--glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+}
+
+.glass-deep:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+}
+
+/* Light Glass - Subtle Effect */
+.glass-light {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+}
+
+.glass-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Card Glass Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(31, 38, 135, 0.18);
+}
+
+/* Glass Button - Elegant CTA */
+.glass-btn {
+  background: rgba(30, 58, 95, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  color: var(--primary);
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.glass-btn:hover {
+  background: rgba(30, 58, 95, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 58, 95, 0.2);
+}
+
+.glass-btn:active {
+  transform: translateY(0);
+}
+
+/* Glass Header/Navigation */
+.glass-header {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.glass-header:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Glass Panel - Wide Container */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.4s ease;
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 15px 35px rgba(31, 38, 135, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Glass Badge - Small Info Display */
+.glass-badge {
+  background: rgba(11, 74, 111, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(11, 74, 111, 0.3);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.glass-badge:hover {
+  background: rgba(11, 74, 111, 0.3);
+  border-color: rgba(11, 74, 111, 0.5);
+  transform: scale(1.05);
+}
+
+/* Glass Overlay - Semi-transparent Overlay */
+.glass-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+}
+
+/* Morphed Card - Smooth Rounded Corners with Glass */
+.morphed-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 28px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.morphed-card:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-8px) translateZ(0);
+  box-shadow: 0 20px 40px rgba(31, 38, 135, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Glass Text Container */
+.glass-text {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.glass-text:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-left-width: 6px;
+  transform: translateX(4px);
+}
+
+/* Frosted Glass Input */
+.glass-input {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(11, 74, 111, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Colorful Glass - Accent Color Tinted */
+.glass-accent {
+  background: rgba(11, 74, 111, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(11, 74, 111, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-accent:hover {
+  background: rgba(11, 74, 111, 0.18);
+  border-color: rgba(11, 74, 111, 0.35);
+  box-shadow: 0 8px 25px rgba(11, 74, 111, 0.15);
+}
+
+/* Glass Glow - Glowing Border Effect */
+.glass-glow {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.glass-glow:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 12px 40px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+
 .btn-welcome {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
   color: var(--white);
   padding: 12px 28px;
   border-radius: 30px;
@@ -39,13 +301,7 @@ h1, h2, h3 {
 }
 
 .text-gradient {
-  background: linear-gradient(
-    90deg,
-    var(--secondary),
-    var(--accent)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 .feature-card,
 .testimonial-card,
@@ -54,12 +310,18 @@ h1, h2, h3 {
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .feature-card:hover,
 .testimonial-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 .icon,
 .stat-icon,
@@ -146,7 +408,10 @@ p {
 }
 
 .counter-box {
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 30px 40px;
   border-radius: 20px;
   min-width: 200px;
@@ -219,14 +484,19 @@ p {
   transform: translateY(0);
   box-shadow: var(--shadow-sm);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .school-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: transparent;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Enhanced Buttons */
@@ -242,8 +512,10 @@ p {
   text-transform: uppercase;
   font-size: 0.875rem;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
+  background: var(--primary);
+  color: var(--white);
 }
 
 .btn:hover {
@@ -303,7 +575,10 @@ p {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   margin: 0 5px;
 }
 
@@ -311,6 +586,8 @@ p {
   transform: scale(1.1) rotate(5deg);
   background: var(--accent);
   color: white;
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(11, 74, 111, 0.3);
 }
 
 /* Form Field Focus States */
@@ -356,7 +633,7 @@ html {
   --bg-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%237e22ce' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
   --accent: #7e22ce; /* purple */
   --accent-2: #ff7a1a; /* orange */
-  --bg: linear-gradient(135deg, #f9f5ff 0%, #f0f4ff 100%);
+  --bg: #f9f5ff;
   --card-bg: rgba(255, 255, 255, 0.95);
   --text-on-accent: #ffffff;
 }
@@ -365,7 +642,7 @@ html {
   --bg-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230f4c81' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
   --accent: #0f4c81; /* blue */
   --accent-2: #f6c422; /* yellow */
-  --bg: linear-gradient(135deg, #f0f7ff 0%, #fff9e6 100%);
+  --bg: #f0f7ff;
   --card-bg: rgba(255, 255, 255, 0.95);
   --text-on-accent: #ffffff;
 }
@@ -471,7 +748,7 @@ body {
 .school-bvk {
   --accent: #7e22ce; /* bold purple */
   --accent-2: #ff7a1a; /* vibrant orange */
-  --brand-dark: linear-gradient(135deg, #7e22ce, #ff7a1a);
+  --brand-dark: #7e22ce;
   --bg: #fbf7ff;
   /* Soft lavender backdrop */
   --surface: #ffffff;
@@ -485,7 +762,7 @@ body {
 .school-bks {
   --accent: #0f4c81; /* ink blue */
   --accent-2: #f6c422; /* bright yellow */
-  --brand-dark: linear-gradient(135deg, #0f4c81, #f6c422);
+  --brand-dark: #0f4c81;
   --bg: #f2f8ff;
   /* Light airy blue */
   --surface: #ffffff;
@@ -656,7 +933,6 @@ body.school-bks .brand-name {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   text-decoration: none;
-  background: #000;
 } 
 
 /* Glint / Shimmer Effect (Kids Club Premium Feel) */
@@ -1159,7 +1435,7 @@ body.school-bks .footer-column h4 {
 /* small utilities */
 .btn {
   display: inline-block;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2, var(--accent)));
+  background: var(--primary);
   color: #fff;
   padding: 10px 16px;
   border-radius: 8px;
@@ -1472,7 +1748,7 @@ body.school-bks a:focus {
 
 /* Topbar / Notices */
 .topbar {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2, var(--accent)));
+  background: var(--accent);
   color: #fff;
   padding: 8px 0
 }
@@ -1512,11 +1788,11 @@ body.school-bks a:focus {
 
 /* per-school variants for topbar focus and hero buttons */
 body.school-bvk .topbar {
-  background: linear-gradient(90deg, #7e22ce, #ff7a1a)
+  background: #7e22ce;
 }
 
 body.school-bks .topbar {
-  background: linear-gradient(90deg, #0f4c81, #f6c422)
+  background: #0f4c81;
 }
 
 /* admission CTA on hero uses var(--accent) and var(--accent-2) as gradient above */
@@ -1560,7 +1836,7 @@ body.school-bks .topbar {
   align-items: center;
   padding: 10px 12px;
   border-bottom: 1px solid rgba(15, 23, 36, 0.04);
-  background: linear-gradient(90deg, var(--accent), var(--accent-2, var(--accent)))
+  background: var(--accent)
 }
 
 .chat-header h3 {
@@ -2306,7 +2582,7 @@ body.school-bks .welcome-list li::before {
   height: 6px;
   margin-top: 10px;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: var(--accent);
 } 
 
 .stat-label {
@@ -2601,4 +2877,664 @@ section {
 
 }
 
+/* ========================================
+   ADVANCED GLASS ANIMATIONS
+   ======================================== */
 
+/* Glass Entrance Animation */
+@keyframes glassEntrance {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    transform: translateY(0);
+  }
+}
+
+/* Glass Float Animation */
+@keyframes glassFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Glass Shimmer Effect */
+@keyframes glassShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Glass Pulse Animation */
+@keyframes glassPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(31, 38, 135, 0.15);
+  }
+}
+
+/* Apply entrance animation to glass elements - DISABLED to prevent glitches */
+.glass,
+.glass-card,
+.glass-panel,
+.glass-btn,
+.morphed-card {
+  animation: none;
+}
+
+/* Add subtle floating effect on elements with glass - DISABLED */
+.glass-glow {
+  animation: none;
+}
+
+/* Enhanced glass with pulse - DISABLED */
+.glass-panel {
+  animation: none;
+}
+
+/* Glass Input Focus Animation */
+@keyframes glassInputFocus {
+  from {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  to {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--accent);
+  }
+}
+
+.glass-input:focus {
+  animation: glassInputFocus 0.3s ease forwards;
+}
+
+/* Smooth transition for all glass elements */
+.glass,
+.glass-deep,
+.glass-light,
+.glass-card,
+.glass-btn,
+.glass-header,
+.glass-panel,
+.glass-badge,
+.glass-overlay,
+.morphed-card,
+.glass-text,
+.glass-input,
+.glass-accent,
+.glass-glow {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced hover animation for glass cards */
+@keyframes cardLift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+.glass-card:hover {
+  animation: none;
+  transform: translateY(-8px);
+}
+
+/* Glass Scroll Animation */
+@keyframes glassSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Staggered entrance for multiple cards - DISABLED */
+.glass-card:nth-child(1) { animation-delay: 0s; }
+.glass-card:nth-child(2) { animation-delay: 0s; }
+.glass-card:nth-child(3) { animation-delay: 0s; }
+.glass-card:nth-child(4) { animation-delay: 0s; }
+
+/* Enhanced Feature Card Glass Animation - DISABLED */
+.feature-card {
+  animation: none;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0s; }
+.feature-card:nth-child(2) { animation-delay: 0s; }
+.feature-card:nth-child(3) { animation-delay: 0s; }
+.feature-card:nth-child(4) { animation-delay: 0s; }
+.feature-card:nth-child(5) { animation-delay: 0s; }
+
+/* Gradient shift animation for text on glass - DISABLED */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Apply to gradient text - DISABLED */
+.text-gradient {
+  background-size: auto;
+  animation: none;
+}
+
+/* Glass Button Press Effect */
+@keyframes buttonPress {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1px);
+  }
+}
+
+.glass-btn:active {
+  animation: buttonPress 0.3s ease;
+}
+
+/* Responsive glass effects for smaller screens */
+@media (max-width: 768px) {
+  .glass,
+  .glass-card,
+  .glass-panel {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .morphed-card {
+    padding: 16px;
+  }
+
+  .glass-panel {
+    padding: 20px;
+  }
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE DESIGN
+   ======================================== */
+
+/* Extra Large Screens (1200px+) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Large Screens (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 50px 0;
+  }
+  
+  .glass-panel {
+    padding: 20px;
+  }
+  
+  .glass-card {
+    padding: 16px;
+  }
+  
+  .feature-card,
+  .testimonial-card {
+    padding: 16px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Tablets & Large Phones (481px - 767px) */
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .section {
+    padding: 40px 0;
+  }
+  
+  .school-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .school-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .about-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .about-image {
+    width: 100%;
+  }
+  
+  .about-content {
+    width: 100%;
+  }
+  
+  .glass-panel {
+    padding: 15px;
+  }
+  
+  .glass-card {
+    padding: 12px;
+  }
+  
+  .morphed-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  
+  .feature-card,
+  .testimonial-card {
+    padding: 12px;
+  }
+  
+  .btn,
+  .btn-welcome {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  
+  .glass-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .testimonials-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .impact-counters {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .counter-box {
+    min-width: auto;
+    width: 100%;
+    padding: 20px 30px;
+  }
+  
+  .marquee-track {
+    gap: 12px;
+  }
+  
+  .marquee-group {
+    gap: 12px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .school-hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .school-hero .overlay {
+    padding: 15px;
+  }
+  
+  .hero .overlay {
+    padding: 15px;
+  }
+}
+
+/* Mobile Phones (320px - 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  
+  h1 {
+    font-size: 1.25rem;
+    line-height: 1.1;
+    margin-bottom: 15px;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 0.95rem;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .section {
+    padding: 30px 0;
+  }
+  
+  .school-card {
+    width: 100%;
+  }
+  
+  .school-card .school-title {
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .glass-panel {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .glass-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  
+  .morphed-card {
+    padding: 10px;
+    border-radius: 14px;
+  }
+  
+  .feature-card,
+  .testimonial-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  
+  .btn,
+  .btn-welcome {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+  
+  .glass-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+  
+  .counter-box {
+    padding: 15px 20px;
+    border-radius: 12px;
+  }
+  
+  .count {
+    font-size: 2.2rem;
+  }
+  
+  .footer {
+    padding: 30px 0;
+  }
+  
+  .footer-column {
+    margin-bottom: 20px;
+  }
+  
+  .hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .school-hero {
+    height: 45vh;
+    min-height: 250px;
+  }
+  
+  .hero h1,
+  .school-hero h1 {
+    font-size: 1.3rem;
+    word-break: break-word;
+  }
+  
+  .tagline {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .welcome-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-left,
+  .welcome-center,
+  .welcome-right {
+    width: 100%;
+  }
+  
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .nav a {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+  
+  .header {
+    padding: 10px 0;
+  }
+  
+  .topbar {
+    display: none;
+  }
+  
+  .chat-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .journey-item {
+    height: 200px;
+  }
+  
+  .campus-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .campus-image {
+    width: 100%;
+  }
+  
+  .campus-content {
+    width: 100%;
+  }
+}
+
+/* Extra Small Screens (320px - 360px) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.1rem;
+  }
+  
+  h2 {
+    font-size: 1rem;
+  }
+  
+  h3 {
+    font-size: 0.9rem;
+  }
+  
+  p {
+    font-size: 0.85rem;
+  }
+  
+  .section {
+    padding: 20px 0;
+  }
+  
+  .glass-panel,
+  .glass-card {
+    padding: 8px;
+    border-radius: 10px;
+  }
+  
+  .btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .counter-box {
+    padding: 12px 15px;
+  }
+  
+  .count {
+    font-size: 2rem;
+  }
+  
+  .hero {
+    height: 45vh;
+    min-height: 250px;
+  }
+  
+  .school-hero {
+    height: 40vh;
+    min-height: 220px;
+  }
+}
+
+/* Landscape Mode (Any height under 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero,
+  .school-hero {
+    height: auto;
+    min-height: auto;
+    padding: 30px 0;
+  }
+  
+  .section {
+    padding: 30px 0;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
