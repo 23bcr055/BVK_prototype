@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Education Trust</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+</head>
+
+<body class="home">
+
+  <!-- Topbar / Announcement -->
+  <div class="topbar">
+    <div class="container"
+      style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div class="top-contact"> +91 90000 00000 &nbsp; | &nbsp; admissions@educationtrust.org</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="brand">
+        <img src="images/logo.svg" class="logo" alt="Logo">
+        <span class="brand-name">Education Trust</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Open navigation">
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+      <nav class="nav" role="navigation" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Choose us</a>
+        <a href="#impact">Impact</a>
+        <a href="#testimonials">Testimonials</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <h1>Shaping <span class="text-gradient">Future</span> <br>Through Education</h1>
+
+      <div class="school-links">
+        <a href="school1/index.html" class="school-card bvk">
+          <img src="images/school1.jpg" alt="BVK School">
+          <div class="school-title">BVK School</div>
+        </a>
+        <a href="school2/index.html" class="school-card bks">
+          <img src="images/school2.jpg" alt="BKS School">
+          <div class="school-title">BKS School</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container about-container">
+      <div class="about-image">
+        <img src="images/infra1.jpg" alt="About Education Trust">
+      </div>
+      <div class="about-content">
+        <h2>Our <span class="text-gradient">Legacy</span></h2>
+        <p>Education Trust is dedicated to nurturing young minds and shaping responsible, confident, and knowledgeable
+          individuals across our network of schools. Established with a commitment to academic excellence and holistic
+          development, our trust
+          provides supportive and inspiring learning environments where students are encouraged to explore their
+          potential.</p>
+        <p>Across all our institutions, we blend traditional learning with modern educational practices to ensure
+          students receive a balanced and
+          future-ready education. Beyond academics, our programs include sports, arts, cultural activities, and
+          leadership opportunities that help build character and confidence.</p>
+        <p>We partner closely with parents through regular communication, feedback sessions, and school events. Our
+          vision is to empower students with the knowledge, skills, and values to become lifelong learners and
+          responsible
+          citizens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why" class="section accent-bg">
+    <div class="container marquee-wrapper">
+      <div class="section-header center-text">
+        <h2 style="text-align: center; margin-bottom: 40px;">Why Choose Us</h2>
+      </div>
+
+      <div class="marquee-track">
+        <!-- Content Set 1 -->
+        <div class="marquee-group">
+          <div class="feature-card">
+            <div class="icon">👩‍🏫</div>
+            <h3>Expert Faculty</h3>
+            <p>Qualified and passionate teachers ensuring individual attention and guidance.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">📖</div>
+            <h3>Strong Foundation</h3>
+            <p>Structured curriculum promoting conceptual understanding and practical learning.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">⚖️</div>
+            <h3>Value-Based</h3>
+            <p>Emphasis on discipline, ethics, and moral values for holistic development.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🛡️</div>
+            <h3>Safe Environment</h3>
+            <p>Secure, inclusive atmosphere where children feel respected and motivated.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🚀</div>
+            <h3>Modern Methods</h3>
+            <p>Integrating technology and innovative practices to make learning engaging.</p>
+          </div>
+        </div>
+
+        <!-- Content Set 2 (Duplicate for smooth scroll) -->
+        <div class="marquee-group">
+          <div class="feature-card">
+            <div class="icon">👩‍🏫</div>
+            <h3>Expert Faculty</h3>
+            <p>Qualified and passionate teachers ensuring individual attention and guidance.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">📖</div>
+            <h3>Strong Foundation</h3>
+            <p>Structured curriculum promoting conceptual understanding and practical learning.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">⚖️</div>
+            <h3>Value-Based</h3>
+            <p>Emphasis on discipline, ethics, and moral values for holistic development.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🛡️</div>
+            <h3>Safe Environment</h3>
+            <p>Secure, inclusive atmosphere where children feel respected and motivated.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🚀</div>
+            <h3>Modern Methods</h3>
+            <p>Integrating technology and innovative practices to make learning engaging.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="impact-section">
+    <div class="container">
+      <h2>Our Impact</h2>
+
+      <div class="impact-counters">
+        <div class="counter-box">
+          <div class="icon">🎓</div>
+          <span class="count" data-target="5000">0</span>
+          <p>Students Educated</p>
+        </div>
+
+        <div class="counter-box">
+          <div class="icon">🏆</div>
+          <span class="count" data-target="100">0</span>
+          <p>Awards Won</p>
+        </div>
+
+        <div class="counter-box">
+          <div class="icon">📚</div>
+          <span class="count" data-target="25">0</span>
+          <p>Years of Excellence</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section accent-bg">
+    <div class="container">
+      <h2>Testimonials</h2>
+      <div class="testimonials-list">
+        <div class="testimonial-card" tabindex="0">
+          <div class="testimonial-image">
+            <img src="images/achieve1.jpg" alt="Parent">
+          </div>
+          <div class="testimonial-content">
+            <blockquote>“Since joining BVK, my child's confidence and curiosity have grown tremendously. The teachers
+              give
+              personal attention and encouragement.”</blockquote>
+            <div class="meta"><span class="avatar">PR</span><span class="name">Priya R., Parent</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" tabindex="0">
+          <div class="testimonial-image">
+            <img src="images/achieve2.jpg" alt="Parent">
+          </div>
+          <div class="testimonial-content">
+            <blockquote>“The balance of academics and arts here is wonderful — our daughter enjoys the music and drama
+              programs.”</blockquote>
+            <div class="meta"><span class="avatar">AK</span><span class="name">Arun K., Parent</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" tabindex="0">
+          <div class="testimonial-image">
+            <img src="images/achieve3.jpg" alt="Parent">
+          </div>
+          <div class="testimonial-content">
+            <blockquote>“Great communication from the school, and the staff genuinely care about every student.”
+            </blockquote>
+            <div class="meta"><span class="avatar">MS</span><span class="name">Meena S., Parent</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card" tabindex="0">
+          <div class="testimonial-image">
+            <img src="images/achieve4.jpg" alt="Parent">
+          </div>
+          <div class="testimonial-content">
+            <blockquote>“We've seen real improvement in our son's grades and social skills — a supportive environment.”
+            </blockquote>
+            <div class="meta"><span class="avatar">RP</span><span class="name">Ravi P., Parent</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's Story -->
+  <section id="founders" class="section founder-section">
+    <div class="container">
+      <div class="founder-grid">
+        <div class="founder-photo">
+          <img src="images/founder.jpg" alt="Our Founders" onerror="this.onerror=null;this.src='images/school1.jpg'">
+        </div>
+        <div class="founder-text">
+          <h2>Founder’s <span class="text-gradient">Story</span></h2>
+          <p>The visionaries behind Education Trust launched this initiative with a simple belief: every child
+            deserves an inspiring and supportive education. With decades of experience in teaching and school
+            leadership, they brought together a team committed to excellence, compassion, and community engagement.</p>
+          <p>Under their guidance, our collective of schools has grown into a nurturing environment that
+            balances academic rigor with creativity and character development. Their hands-on approach and emphasis on
+            values remain central to our mission across all locations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: Address -->
+        <div class="footer-column">
+          <div class="school-address">
+            <p><strong>Education Trust</strong></p>
+            <p>123 Education Lane, Fraser Town,<br>Bangalore - 560005</p>
+            <p>Ph: +91 90000 11111</p>
+            <p>Email: info@educationtrust.org</p>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-column footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#impact">Our Impact</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Social & Copyright -->
+        <div class="footer-column social-col">
+          <h4>Follow Us</h4>
+          <div class="social">
+            <a href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="social-icon">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+          <p style="margin-top: 20px;">&copy; 2025 Education Trust.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot widget (mock) -->
+  <div id="chat-widget" class="chat-widget" aria-hidden="true">
+    <button id="chat-toggle" class="chat-toggle" aria-label="Open chat">💬</button>
+    <div class="chat-panel" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+      <div class="chat-header">
+        <h3 id="chat-title">Ask us (AI)</h3><button id="chat-close" aria-label="Close chat">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages" role="log" aria-live="polite"></div>
+      <form id="chat-form" class="chat-form"><input id="chat-input" aria-label="Type a message"
+          placeholder="Ask about admissions, programs, fees..." /><button type="submit">Send</button></form>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+  <!-- Initialize GSAP and animations -->
+  <script>
+    // Wait for GSAP to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if GSAP is loaded
+      if (typeof gsap !== 'undefined') {
+        // Load animations after a short delay to ensure everything is ready
+        setTimeout(function() {
+          const script = document.createElement('script');
+          script.src = 'js/animations.js';
+          script.async = true;
+          document.body.appendChild(script);
+        }, 100);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
