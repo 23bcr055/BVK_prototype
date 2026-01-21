@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BVK School</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .page-header {
+            padding: 150px 20px 50px;
+            background: #D6008D;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            padding: 80px 10%;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-form {
+            flex: 1.5;
+            min-width: 400px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D6008D;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .submit-btn {
+            background: #FF6600;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #D6008D;
+            color: #fff;
+        }
+
+        .mainHeader {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(214, 0, 141, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            backdrop-filter: blur(10px);
+        }
+
+        .navItems a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="mainHeader">
+        <div class="logoSec" style="color: white; font-size: 24px; font-weight: bold;">
+            <i class="fa fa-graduation-cap"></i>
+            <span>BVK School</span>
+        </div>
+        <nav class="navItems">
+            <a href="index.html">Home</a>
+            <a href="infrastructure.html">Infrastructure</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="events.html">Events</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html" class="text-orange">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you</p>
+    </section>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2 class="text-pink">Get In Touch</h2>
+            <p style="margin: 20px 0; line-height: 1.6; color: #555;">Have questions about admissions or our programs?
+                Feel free to reach out to us using the contact details below or the contact form.</p>
+            <div style="margin-top: 30px;">
+                <p><strong>📍 Address:</strong> Main Road, Tamil Nadu, India</p>
+                <p style="margin-top: 15px;"><strong>📞 Phone:</strong> +91 98765 43210</p>
+                <p style="margin-top: 15px;"><strong>✉️ Email:</strong> info@bvkschool.com</p>
+            </div>
+        </div>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn"
+                    onclick="event.preventDefault(); alert('Message sent successfully!');">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer style="background:#D6008D; color:white; padding:40px; text-align:center;">
+        <p>&copy; 2026 Bharathi Vidhya Kendra School. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

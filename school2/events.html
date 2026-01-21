@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - BKS School</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainHeader {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 51, 153, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            backdrop-filter: blur(10px);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .logoSec {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navItems a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+        }
+
+        .page-header {
+            padding: 150px 20px 50px;
+            background: #003399;
+            text-align: center;
+            color: #FFD700;
+        }
+
+        .event-section {
+            padding: 80px 10%;
+        }
+
+        .event-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .event-box {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .event-img {
+            height: 200px;
+            background: #ccc;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .event-info {
+            padding: 25px;
+        }
+
+        .event-info h3 {
+            color: #003399;
+            margin-top: 0;
+        }
+
+        .event-date {
+            color: #888;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer {
+            background: #003399;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="mainHeader">
+        <div class="logoSec">
+            <i class="fa fa-graduation-cap"></i>
+            <span>BKS School</span>
+        </div>
+        <nav class="navItems">
+            <a href="index.html">Home</a>
+            <a href="infrastructure.html">Infrastructure</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="events.html" class="text-yellow">Events</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Events at BKS</h1>
+        <p>Creating lifelong memories</p>
+    </section>
+
+    <div class="event-section">
+        <div class="event-row">
+            <div class="event-box">
+                <div class="event-img" style="background-image: url('img/building-1.jpg');"></div>
+                <div class="event-info">
+                    <span class="event-date">Jan 26, 2026</span>
+                    <h3>Republic Day Celebrations</h3>
+                    <p>Annual celebration with patriotic songs, speeches, and flag hoisting ceremony.</p>
+                </div>
+            </div>
+            <div class="event-box">
+                <div class="event-img" style="background-image: url('img/building-2.jpg');"></div>
+                <div class="event-info">
+                    <span class="event-date">Feb 10, 2026</span>
+                    <h3>Interschool Quiz Night</h3>
+                    <p>BKS hosts the regional quiz competition. Our sharpen your minds and be prepared!</p>
+                </div>
+            </div>
+            <div class="event-box">
+                <div class="event-img" style="background-image: url('img/building-3.jpg');"></div>
+                <div class="event-info">
+                    <span class="event-date">Mar 1, 2026</span>
+                    <h3>Founder's Day</h3>
+                    <p>Honoring our roots with a special assembly and community service initiative.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Bharathi Kids Kshethralaya School. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

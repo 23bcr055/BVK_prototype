@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements - BKS School</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        .mainHeader {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 51, 153, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            backdrop-filter: blur(10px);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .logoSec {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navItems a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+        }
+
+        .page-header {
+            padding: 150px 20px 50px;
+            background: #003399;
+            text-align: center;
+            color: #FFD700;
+        }
+
+        .achievement-container {
+            padding: 80px 15%;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: 0.3s;
+        }
+
+        .achievement-item:hover {
+            background: #f9fbff;
+        }
+
+        .achievement-item i {
+            font-size: 60px;
+            color: #FFD700;
+            margin-right: 50px;
+        }
+
+        .achievement-text h3 {
+            font-size: 24px;
+            color: #003399;
+            margin-bottom: 10px;
+        }
+
+        .achievement-text p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #003399;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="mainHeader">
+        <div class="logoSec">
+            <i class="fa fa-graduation-cap"></i>
+            <span>BKS School</span>
+        </div>
+        <nav class="navItems">
+            <a href="index.html">Home</a>
+            <a href="infrastructure.html">Infrastructure</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="events.html">Events</a>
+            <a href="achievements.html" class="text-yellow">Achievements</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Student Success</h1>
+        <p>Celebrating excellence in all fields</p>
+    </section>
+
+    <div class="achievement-container">
+        <div class="achievement-item">
+            <i class="fa fa-graduation-cap"></i>
+            <div class="achievement-text">
+                <h3>Top Rankings in NEET</h3>
+                <p>Our students have consistently ranked among the top 5% in regional NEET examinations, securing
+                    admissions to prestigious medical colleges.</p>
+            </div>
+        </div>
+        <div class="achievement-item">
+            <i class="fa fa-music"></i>
+            <div class="achievement-text">
+                <h3>Regional Music Winners</h3>
+                <p>The BKS School Choir won the 'Best Performance' award at the 2025 Regional Inter-School Cultural
+                    Competition.</p>
+            </div>
+        </div>
+        <div class="achievement-item">
+            <i class="fa fa-soccer-ball-o"></i>
+            <div class="achievement-text">
+                <h3>Football League Champions</h3>
+                <p>Our senior football team won the State Level Private Schools League, beating 20 other institutions.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Bharathi Kids Kshethralaya School. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
