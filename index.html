@@ -321,21 +321,29 @@
       display: flex;
       justify-content: center;
       gap: 30px;
+      width:100%;
       flex-wrap: wrap;
     }
 
+.main-nav:hover .nav-link-animate {
+      color: #888;
+      /* Turn others grey when hovering container */
+    }
+
+    
     /* Menu Item Hover Animation */
     .nav-link-animate {
       position: relative;
       padding: 12px 24px;
-      color: #252525;
+      color: #000;
+      /* Default Black */
       font-weight: 500;
       z-index: 1;
-      background: rgba(255, 255, 255, 0.15);
       /* Light transparent background */
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(5px);
       overflow: hidden;
       border-radius: 20px;
+      transition: color 0.3s ease;
       /* Rounded corners */
     }
 
@@ -1370,5 +1378,6 @@
 
 
 </html>
+
 
 
