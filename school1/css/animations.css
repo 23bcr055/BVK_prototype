@@ -1,0 +1,252 @@
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glint {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+/* Base Animation Classes */
+.reveal,
+.reveal-box {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active,
+.reveal-box.active {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* Fallback for users with JS disabled or if JS takes too long */
+.no-js .reveal,
+.no-js .reveal-box {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal-down {
+  transform: translateY(-40px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-scale {
+  transform: scale(0.9);
+}
+
+/* Premium Heading Style (inspired by user image) */
+.premium-heading {
+  display: block;
+  width: fit-content;
+  padding: 10px 40px;
+  position: relative;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-image: linear-gradient(to right, #a855f7, #facc15) 1;
+  text-align: center;
+  margin: 20px auto;
+  font-family: 'Outfit', sans-serif, 'Roboto';
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+/* Ensure high contrast for white text in hero sections */
+
+.mainSec h1,
+.mainSec p {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure dark text in content sections with strong overrides */
+.about-section h1,
+.about-section p,
+.about-section span,
+.divTwo h1,
+.divTwo p,
+.divTwo h3,
+.divFour h1,
+.divFour p,
+.divFour h3,
+.divFive h1,
+.divFive p,
+.divFive h3,
+.testi-section h1,
+.testi-section p,
+.testi-section span {
+  color: #1a1a1a !important;
+}
+
+.about-section p,
+.divTwo p,
+.divFour p,
+.divFive p {
+  color: #333333 !important;
+}
+
+/* Force visibility when active */
+.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+/* Staggered Delays */
+
+.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.delay-300 {
+  transition-delay: 0.3s;
+}
+
+.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.delay-500 {
+  transition-delay: 0.5s;
+}
+
+/* Interactive Hover Effects */
+.hover-premium {
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-premium::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-150%) skewX(-25deg);
+  transition: none;
+}
+
+.hover-premium:hover::after {
+  animation: glint 0.8s ease-in-out;
+}
+
+/* Nav Underline Effect */
+.nav-link-animate {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link-animate::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link-animate:hover::after {
+  width: 100%;
+}
+
+/* Image Hover Zoom */
+.img-zoom-container {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img-zoom-container img {
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.img-zoom-container:hover img {
+  transform: scale(1.1);
+}

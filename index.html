@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Background Cards</title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="school1/css/animations.css">
+  <link rel="stylesheet" href="school1/css/interactive.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+  <style>
+    @layer base, snapping, layout;
+
+    @layer snapping {
+      html {
+        /* scroll-behavior: smooth; -- Removed to avoid conflict with Lenis */
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+
+    body,
+    html {
+
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Video background */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Full height */
+
+      object-fit: cover;
+      z-index: -1;
+      /* Behind content */
+    }
+
+    /* Container for cards */
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      /* Center horizontally */
+      gap: 60px;
+      position: relative;
+      z-index: 0;
+      /* Above video */
+      padding: 220px 20px;
+    }
+
+
+    .card {
+      position: relative;
+      width: 500px;
+      height: 250px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, .5);
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+
+    /* Full-fill image slide */
+    .card .slide1 {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s ease;
+      z-index: 1;
+    }
+
+
+
+    .card:hover .slide1 {
+      transform: scale(1.1);
+    }
+
+
+
+    .slide1 .fa {
+      font-size: 100px;
+      /* Bigger icon */
+      color: #fff;
+    }
+
+    /* Glassmorphism content slide */
+    .card .slide2 {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(80, 78, 78, 0.274);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(12px);
+      flex-direction: column;
+      text-align: center;
+      padding: 30px;
+      box-sizing: border-box;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(100%);
+      z-index: 2;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+
+    .card:hover .slide2 {
+      transform: translateX(0);
+    }
+
+
+    .slide2 h3 {
+      color: #fffffff5;
+      font-weight: 800;
+      font-size: 2.5rem;
+      /* Increased size */
+      margin: 0;
+    }
+
+    .slide2 p {
+      color: #cccfff;
+      font-size: 1.3rem;
+      margin: 10px 0 0;
+
+    }
+
+    /* --- ADVANCED INTERACTIONS CSS --- */
+
+    /* Custom Scroll Progress Bar */
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 2000;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .scroll-progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #facc15, #f59e0b);
+      width: 0%;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    }
+
+    /* Header Scrolled State */
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(15px);
+      padding-top: 20px;
+      padding-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-wrapper {
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* SVG Drawing Line */
+    .scroll-line-container {
+      position: fixed;
+      right: 5%;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .scroll-line-svg {
+      height: 100%;
+      width: 100%;
+    }
+
+    .scroll-line-path {
+      stroke: #facc15;
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      opacity: 0.4;
+    }
+
+    /* Staggered Card Animation Base */
+    .why-card,
+    .testi-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .why-card.active,
+    .testi-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    /* Horizontal card numbers */
+    .card .face2 {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      font-size: 4em;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.5);
+      transition: opacity 0.3s;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .card:hover .face2 {
+      opacity: 0;
+    }
+
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 70%;
+        height: 350px;
+      }
+    }
+
+    header {
+      padding-top: 50px;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 25px;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 25px;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #facc15;
+    }
+
+    /* MARQUEE STYLES */
+    .marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 30px;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+      padding: 20px 0;
+      /* Space for shadows */
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Main Navigation */
+    /* Main Navigation */
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Menu Item Hover Animation */
+    .nav-link-animate {
+      position: relative;
+      padding: 12px 24px;
+      color: #252525;
+      font-weight: 500;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.15);
+      /* Light transparent background */
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+      border-radius: 20px;
+      /* Rounded corners */
+    }
+
+    .nav-link-animate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: #6b70af;
+      /* Pink/Red fill color */
+      z-index: -1;
+      transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .nav-link-animate:hover::before {
+      width: 100%;
+    }
+
+    .nav-link-animate:hover {
+      border-color: #ff4757;
+      color: #fff;
+    }
+
+    /* About Section */
+    .about-section-styled {
+      padding: 100px 20px;
+      background: #ffffff;
+    }
+
+    /* Moving Letters ml15 Animation */
+    .ml15 {
+      font-weight: 800;
+      font-size: 3.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0376f2;
+      display: flex;
+      justify-content: center;
+      gap: 0.5em;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .ml15 .word {
+      display: inline-block;
+      line-height: 1em;
+    }
+
+
+    /* ---------- IMAGE TEXT OVERLAY ---------- */
+    .slide1 {
+      position: relative;
+    }
+
+    /* Optional dark overlay for readability */
+    .slide1::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(54, 53, 53, 0.25);
+    }
+
+    /* Improve text clarity */
+    .slide2 h3 {
+      font-weight: 700;
+    }
+
+    /* ---------- MOBILE OPTIMIZATION ---------- */
+    @media (max-width: 480px) {
+      .video-bg {
+        height: 100%;
+      }
+
+      .container {
+        padding: 140px 10px;
+        gap: 30px;
+      }
+
+      .card {
+        width: 95%;
+        height: 200px;
+      }
+
+
+      header nav a {
+        font-size: 18px;
+      }
+    }
+
+    /* WHY CHOOSE US */
+    .why-section {
+      padding: 90px 20px;
+      background: linear-gradient(135deg, #dee3ea, #f6f2d1);
+    }
+
+    .why-container {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* TITLE */
+    .why-title {
+      font-size: 36px;
+      margin-bottom: 15px;
+      animation: fadeDown 1s ease forwards;
+    }
+
+    .why-title span {
+      color: #0376f2;
+    }
+
+    .why-subtitle {
+      max-width: 750px;
+      margin: auto;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 30px;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    /* CARDS */
+    .why-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 35px;
+    }
+
+    /* INDIVIDUAL CARD */
+    .why-card {
+      background: #ffffff;
+      padding: 40px 25px;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      transition: all 0.4s ease;
+      animation: slideUp 1s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ICON */
+    .why-card i {
+      font-size: 44px;
+      color: #0376f2;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+
+    /* TEXT */
+    .why-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #111;
+    }
+
+    .why-card p {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* HOVER EFFECTS */
+    .why-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 55px rgba(3, 118, 242, 0.25);
+    }
+
+    .why-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(3, 118, 242, 0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .why-card:hover::after {
+      opacity: 1;
+    }
+
+    /* ANIMATIONS */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatIcon {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .why-title {
+        font-size: 28px;
+      }
+    }
+
+
+    /* TESTIMONIAL SECTION */
+    .testi-section {
+      padding: 100px 10px;
+      background: linear-gradient(135deg, #f6f2d1, #dee3ea);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* TITLE */
+    .testi-title {
+      font-size: 10px;
+      margin-bottom: 10px;
+      animation: fadeDown 1s ease forwards;
+    }
+
+    .testi-title span {
+      color: #0376f2;
+    }
+
+    .testi-subtitle {
+      color: #555;
+      margin-bottom: 30px;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    /* WRAPPER */
+    .testi-wrapper {
+      display: flex;
+      gap: 35px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideLeft 1.5s ease forwards;
+    }
+
+    /* CARD */
+    .testi-card {
+      width: 320px;
+      background: rgba(0, 0, 0, 0.164);
+      backdrop-filter: blur(5px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+      position: relative;
+      transition: all 0.4s ease;
+      animation: scaleIn 1.2s ease forwards;
+    }
+
+    /* QUOTE ICON */
+    .testi-card i {
+      font-size: 32px;
+      color: #0376f2;
+      margin-bottom: 5px;
+      display: inline-block;
+      animation: bounceQuote 2.5s infinite;
+    }
+
+    /* TEXT */
+    .testi-card p {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .testi-card h3 {
+      font-size: 16px;
+      margin-bottom: 3px;
+      color: #111;
+    }
+
+    .testi-card span {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* HOVER EFFECTS */
+    .testi-card:hover {
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 30px 65px rgba(3, 118, 242, 0.3);
+    }
+
+    .testi-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(3, 118, 242, 0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .testi-card:hover::after {
+      opacity: 1;
+    }
+
+    /* AUTO FLOAT ANIMATION */
+    .testi-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .testi-card:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .testi-card:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    /* KEYFRAMES */
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes bounceQuote {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .testi-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .testi-title,
+      .ml15 {
+        font-size: 28px;
+      }
+
+      .testi-card {
+        width: 85vw;
+        max-width: 320px;
+        padding: 30px 20px;
+      }
+
+      .marquee-track {
+        gap: 20px;
+      }
+    }
+
+    /* Testimonial Section Refresh */
+
+
+    /* Testimonial Section Refresh */
+    .testi-section {
+      padding: 80px 20px;
+      background: #f8f9fa;
+    }
+
+    /* Removed grid for marquee */
+    /* .testi-grid { ... } */
+
+    /* MAIN FOOTER */
+    .main-footer {
+      background: #111;
+      color: #fff;
+      padding: 80px 10% 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h2 {
+      color: #facc15;
+      font-size: 24px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .footer-col p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: #ccc;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #facc15;
+      padding-left: 8px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #f3e3a3;
+      color: #111;
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 25px;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* MOBILE HEADER STYLES */
+    .mobile-only {
+      display: none;
+    }
+
+    /* Desktop Defaults */
+    header.main-header {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-only {
+        display: block;
+      }
+
+      header.main-header {
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+      }
+
+      .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        width: 70%;
+      }
+
+      .mobile-toggle {
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 102;
+        margin-left: auto;
+        /* Push to right */
+      }
+
+      /* Mobile Menu Dropdown */
+      .main-nav {
+        display: none;
+        /* Hidden */
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 250px;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 0 0 0 15px;
+        gap: 15px;
+
+      }
+
+      .main-nav.active {
+        display: flex;
+        /* Show when toggled */
+        animation: fadeInMenu 0.3s ease;
+      }
+
+      .nav-link-animate {
+        text-align: right;
+        border: none;
+        padding: 10px;
+        background: transparent;
+        backdrop-filter: none;
+        color: #ffffff !important;
+        /* Force white text for visibility on dark bg */
+      }
+
+      .nav-link-animate::before {
+        display: none;
+        /* Remove blue/purple hover fill on mobile */
+      }
+
+      @keyframes fadeInMenu {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  </style>
+  <script>document.documentElement.classList.remove('no-js');</script>
+  <script src="scroll-animations.js" defer></script>
+  <!-- Lenis for Smooth Scroll -->
+  <!-- Lenis for Smooth Scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  <script src="js/counter.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- SVG Scroll Line -->
+  <div class="scroll-line-container">
+    <svg class="scroll-line-svg">
+      <path id="scrollPath" class="scroll-line-path" d="M 1 0 V 5000" />
+    </svg>
+  </div>
+
+  <!-- Video Background -->
+  <video class="video-bg" autoplay muted loop>
+    <source src="video1.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-wrapper reveal reveal-up active">
+        <header class="main-header">
+          <!-- Mobile Logo (Centered) -->
+          <div class="logo mobile-only">Bharathi Vidhyalaya</div>
+
+          <!-- Mobile Toggle (Right) -->
+          <div class="mobile-toggle mobile-only" id="mobileMenuBtn">
+            <i class="fa fa-bars"></i>
+          </div>
+
+          <nav class="main-nav" id="mainNav">
+            <a href="#" class="nav-link-animate">Home</a>
+            <a href="#about" class="nav-link-animate">About Us</a>
+            <a href="#why-choose-us" class="nav-link-animate">Why choose us</a>
+            <a href="#testimonials" class="nav-link-animate">Testimonials</a>
+            <a href="#founder" class="nav-link-animate">Founder's story</a>
+          </nav>
+        </header>
+
+        <div class="container reveal reveal-up">
+          <div class="card hover-premium" onclick="location.href='school1/index.html'">
+            <div class="slide1" style="background-image: url('school1.jpg');"></div>
+            <div class="slide2">
+              <h3>BVK School</h3>
+              <p>Trust yourself and keep going.</p>
+            </div>
+            <div class="face2">01</div>
+          </div>
+          <div class="card hover-premium" onclick="location.href='school2/index.html'">
+            <div class="slide1" style="background-image: url('school2.jpg');"></div>
+            <div class="slide2">
+              <h3>BKS School</h3>
+              <p>Education is the key to success.</p>
+            </div>
+            <div class="face2">02</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section reveal about-section-styled">
+      <div class="why-container">
+        <h1 class="ml15">
+          <span class="word">About</span>
+          <span class="word">Us</span>
+        </h1>
+        <p class="why-subtitle">
+          Bharathi Vidhya Kendra and Bharathi Kids Kshethralaya are dedicated to providing holistic education that
+          balances academic excellence with character building.
+        </p>
+
+        <!-- Interactive Cards -->
+        <div class="interactive-cards-container">
+          <div class="interactive-card card-theme-orange">
+            <i class="fa fa-university"></i>
+            <h3>Our Legacy</h3>
+            <p>Founded on principles of excellence, becoming a beacon of quality education in the region.</p>
+          </div>
+
+          <div class="interactive-card card-theme-blue">
+            <i class="fa fa-rocket"></i>
+            <h3>Our Approach</h3>
+            <p>Curiosity is celebrated and creativity is nurtured. Students don't just learn; they grow.</p>
+          </div>
+          <div class="interactive-card card-theme-pink">
+            <i class="fa fa-heart"></i>
+            <h3>Our Values</h3>
+            <p>Integrity, Compassion, and Responsibility are at the core of everything we do.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="why-section reveal">
+      <div class="why-container">
+        <h1 class="ml15">
+          <span class="word">Why</span>
+          <span class="word">Choose</span>
+          <span class="word">Us?</span>
+        </h1>
+        <p class="why-subtitle">Empowering the next generation with quality education and moral values.</p>
+        <div class="why-cards">
+          <div class="why-card">
+            <i class="fa fa-graduation-cap"></i>
+            <h3>Expert Faculty</h3>
+            <p>Our teachers are experienced, passionate, and dedicated to student success.</p>
+          </div>
+          <div class="why-card">
+            <i class="fa fa-building"></i>
+            <h3>Modern Campus</h3>
+            <p>Fully equipped labs, smart classrooms, and extensive library facilities.</p>
+          </div>
+          <div class="why-card">
+            <i class="fa fa-users"></i>
+            <h3>Holistic Growth</h3>
+            <p>Focus on extracurriculars, sports, and soft skills alongside academics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder's Story Section -->
+    <section id="founder" class="about-section reveal" style="padding: 100px 20px; background: #fafafa;">
+      <div class="why-container">
+        <h1 class="ml15">
+          <span class="word">The</span>
+          <span class="word">Founder's</span>
+          <span class="word">Vision</span>
+        </h1>
+        <div
+          style="display: flex; gap: 60px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 50px;">
+          <div
+            style="width: 300px; height: 350px; background: #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img src="school1/img/profile-1.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Founder">
+          </div>
+          <div style="max-width: 600px; text-align: left;">
+            <h3 style="font-size: 2rem; color: #0376f2; margin-bottom: 20px;">Shaping Futures Since 1995</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #333; font-style: italic;">
+              "Our mission was never just to build a school, but to build a foundation for life. At BVK, we see every
+              child as a unique seed with the potential to grow into a mighty tree of knowledge and integrity."
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-top: 20px;">
+              Our founder's journey began with a simple belief: that every child deserves access to premium education
+              regardless of their background. Today, that vision lives on in every student who walks through our doors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testi-section reveal">
+      <div class="why-container">
+        <h1 class="ml15">
+          <span class="word">Testimonials</span>
+        </h1>
+        <p class="why-subtitle">Voice of our community</p>
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <!-- Original Cards -->
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Bharathi Vidhyalaya has given my child confidence and curiosity. The transformation we've seen is
+                remarkable."</p>
+              <h3>— Mrs. Lakshmi</h3>
+              <span>Parent</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Discipline, academics, and personal attention are perfectly balanced. We are proud to be part of the
+                BVK
+                community."</p>
+              <h3>— Mrs. Kavitha</h3>
+              <span>Senior Educator</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"The international exposure and holistic curriculum prepared me for life beyond school. BKS is truly a
+                second home."</p>
+              <h3>— Mr. Anand</h3>
+              <span>Alumni</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Focusing on overall personality development while maintaining academic excellence is what sets this
+                institution apart."</p>
+              <h3>— Mr. Suresh</h3>
+              <span>Entrepreneur & Parent</span>
+            </div>
+
+            <!-- DUPLICATED Cards for Seamless Loop -->
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Bharathi Vidhyalaya has given my child confidence and curiosity. The transformation we've seen is
+                remarkable."</p>
+              <h3>— Mrs. Lakshmi</h3>
+              <span>Parent</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Discipline, academics, and personal attention are perfectly balanced. We are proud to be part of the
+                BVK
+                community."</p>
+              <h3>— Mrs. Kavitha</h3>
+              <span>Senior Educator</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"The international exposure and holistic curriculum prepared me for life beyond school. BKS is truly a
+                second home."</p>
+              <h3>— Mr. Anand</h3>
+              <span>Alumni</span>
+            </div>
+            <div class="testi-card hover-premium">
+              <i class="fa fa-quote-left"></i>
+              <p>"Focusing on overall personality development while maintaining academic excellence is what sets this
+                institution apart."</p>
+              <h3>— Mr. Suresh</h3>
+              <span>Entrepreneur & Parent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h2>BVK Group</h2>
+        <p>Igniting minds and fostering excellence since 1995. The Bharathi Vidhya Kendra Group of Institutions is
+          dedicated to providing holistic education and nurturing future leaders through academic rigor and moral
+          values.</p>
+        <div class="social-links">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+          <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why-choose-us">Why Choose Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#founder">Founder's Vision</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Our Campuses</h2>
+        <ul>
+          <li><a href="school1/index.html">BVK School (Primary & Secondary)</a></li>
+          <li><a href="school2/index.html">BKS School (Kids Kshethralaya)</a></li>
+        </ul>
+        <h2 style="margin-top: 30px;">Contact Info</h2>
+        <p>📍 Main Road, Tamil Nadu, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ group@bvkschool.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Bharathi Vidhya Kendra Educational Group. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+
+
+  <script>
+    // Create an observer to trigger animations when headings enter the viewport
+    // Create an observer to trigger animations when headings enter the viewport
+    const headingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const heading = entry.target;
+        if (entry.isIntersecting) {
+          // Restart animation on scroll
+          anime.timeline({ loop: false })
+            .add({
+              targets: heading.querySelectorAll('.word'),
+              scale: [14, 1],
+              opacity: [0, 1],
+              easing: "easeOutCirc",
+              duration: 800,
+              delay: (el, i) => 800 * i
+            });
+        } else {
+          // Reset opacity when leaving viewport so it can animate again
+          heading.querySelectorAll('.word').forEach(w => w.style.opacity = 0);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    // Initialize observer for all animated headings
+    document.querySelectorAll('.ml15').forEach(h => {
+      // Ensure words are initially invisible
+      h.querySelectorAll('.word').forEach(w => w.style.opacity = 0);
+      headingObserver.observe(h);
+    });
+
+    // --- ADVANCED SCROLL INTERACTIONS ---
+
+    // 1. Initialize Lenis Smooth Scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // 2. Scroll Progress & Header Dynamics & SVG Path
+    const progressBar = document.getElementById('progressBar');
+    const header = document.querySelector('header');
+    const heroWrapper = document.querySelector('.hero-wrapper');
+    const scrollPath = document.getElementById('scrollPath');
+    const pathLength = scrollPath.getTotalLength();
+
+    scrollPath.style.strokeDasharray = pathLength;
+    scrollPath.style.strokeDashoffset = pathLength;
+
+    lenis.on('scroll', (e) => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollY / maxScroll) * 100;
+
+      // Update progress bar
+      progressBar.style.width = scrollPercent + '%';
+
+      // Header state
+      if (scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      // Hero scale effect
+      const heroScale = 1 - (scrollY * 0.0003);
+      if (heroScale > 0.8) {
+        heroWrapper.style.transform = `scale(${heroScale})`;
+      }
+
+      // SVG Path draw
+      const drawLength = pathLength * (scrollY / maxScroll);
+      scrollPath.style.strokeDashoffset = pathLength - drawLength;
+    });
+
+    // 3. Staggered Card Reveals
+    const staggerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const cards = entry.target.querySelectorAll('.why-card, .testi-card');
+        if (entry.isIntersecting) {
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('active');
+            }, index * 150);
+          });
+        } else {
+          cards.forEach((card) => {
+            card.classList.remove('active');
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.why-cards, .testi-grid').forEach(grid => {
+      staggerObserver.observe(grid);
+    });
+  </script>
+  <script>
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    const icon = mobileBtn.querySelector('i');
+
+    mobileBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+
+      // Toggle Icon
+      if (mainNav.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Close menu when link clicked
+    document.querySelectorAll('.nav-link-animate').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+  </script>
+</body>
+
+</html>

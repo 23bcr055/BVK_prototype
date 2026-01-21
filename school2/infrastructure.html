@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure - BVK School</title>
+    <link rel="stylesheet" href="css/index.css">`n    <link rel="stylesheet" href="css/index-responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .page-header {
+            padding: 150px 20px 50px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/building-1.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 10%;
+        }
+
+        .facility-card {
+            background: #faf9f7;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .facility-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .facility-card h3 {
+            padding: 20px 20px 10px;
+            color: #003399;
+        }
+
+        .facility-card p {
+            padding: 0 20px 20px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .mainHeader {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: #003399;
+            /* Solid Blue */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navItems a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navItems a:hover,
+        .navItems a.active {
+            color: #FFD700;
+            /* Yellow Hover/Active */
+        }
+
+        .navItems a:hover {
+            color: #FFD700;
+        }
+
+        .footer {
+            background: #003399;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="mainHeader">
+        <div class="logoSec">
+            <a href="index.html">
+                <img src="img/logo.jpg" alt="BVK School Logo" style="height: 60px; width: auto;">
+            </a>
+        </div>
+        <nav class="navItems">
+            <a href="index.html">Home</a>
+            <a href="infrastructure.html" style="color: #FFD700;">Infrastructure</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="events.html">Events</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Our Infrastructure</h1>
+        <p>World-class facilities for a world-class education</p>
+    </section>
+
+    <section class="facility-grid">
+        <div class="facility-card">
+            <img src="img/building-1.jpg" alt="Smart Classrooms">
+            <h3>Smart Classrooms</h3>
+            <p>Equipped with digital boards and climate control to provide the best learning environment.</p>
+        </div>
+        <div class="facility-card">
+            <img src="img/building-2.jpg" alt="Science Labs">
+            <h3>Advanced Science Labs</h3>
+            <p>Fully equipped laboratories for Physics, Chemistry, and Biology to foster practical learning.</p>
+        </div>
+        <div class="facility-card">
+            <img src="img/building-3.jpg" alt="Library">
+            <h3>World Class Library</h3>
+            <p>A vast collection of books, journals, and digital resources to ignite the joy of reading.</p>
+        </div>
+        <div class="facility-card">
+            <img src="img/students playing.jpg" alt="Sports">
+            <h3>Largest Play Ground</h3>
+            <p>Extensive sports facilities including football fields, basketball courts, and athletics tracks.</p>
+        </div>
+        <div class="facility-card">
+            <img src="img/students in library.jpg" alt="Computer Lab">
+            <h3>Digital Tech Hub</h3>
+            <p>State-of-the-art computer labs with high-speed internet and the latest software.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <!-- Reusing the footer structure -->
+        <div style="text-align: center; padding-top: 20px;">
+            <p>&copy; 2026 Bharathi Vidhya Kendra School. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
