@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - BVK School</title>
-    <link rel="stylesheet" href="css/index.css">`n    <link rel="stylesheet" href="css/index-responsive.css">
+    <link rel="stylesheet" href="css/index.css">`n
+    <link rel="stylesheet" href="css/index-responsive.css">
     <link rel="stylesheet" href="css/animations.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
@@ -18,42 +19,66 @@
 
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 80px 10%;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .event-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .event-img {
-            height: 220px;
-            background: #ddd;
+            height: 240px;
+            background: #f0f0f0;
             background-size: cover;
             background-position: center;
+            position: relative;
         }
 
         .event-content {
-            padding: 25px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .event-content h3 {
             color: #D6008D;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .event-date {
-            font-weight: bold;
+            font-weight: 700;
             color: #FF6600;
             font-size: 14px;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: block;
+        }
+
+        .event-content p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
         }
 
         .mainHeader {
@@ -125,7 +150,8 @@
             <div class="event-content">
                 <span class="event-date">December 25, 2025</span>
                 <h3>Christmas Celebration</h3>
-                <p>Witness the creativity and innovation of our students as they showcase their Extra-Curricular Activities.
+                <p>Witness the creativity and innovation of our students as they showcase their Extra-Curricular
+                    Activities.
                 </p>
             </div>
         </div>
@@ -139,7 +165,7 @@
             </div>
         </div>
 
- <div class="event-card">
+        <div class="event-card">
             <div class="event-img" style="background-image: url('img/grandparents.png');"></div>
             <div class="event-content">
                 <span class="event-date">April 5, 2025</span>
@@ -149,7 +175,7 @@
             </div>
         </div>
 
-     <div class="event-card">
+        <div class="event-card">
             <div class="event-img" style="background-image: url('img/green.png');"></div>
             <div class="event-content">
                 <span class="event-date">March 16, 2025</span>
@@ -189,7 +215,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
     <footer style="background:#D6008D; color:white; padding:40px; text-align:center;">
         <p>&copy; 2026 Bharathi Vidhya Kendra School. All Rights Reserved.</p>
     </footer>
@@ -197,8 +223,3 @@
 </body>
 
 </html>
-
-
-
-
-
